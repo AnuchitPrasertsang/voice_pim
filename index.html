@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voice Pim</title>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <script src="http://192.168.1.251:3000/socket.io/socket.io.js">
+    </script>
+</head>
+<body>
+    <pre style="font-size:20px;" id="pim_text"></pre>
+    <div align="center">
+        <input id="typing" type="text"/>
+    </div>
+
+    <script type="text/javascript">
+    var socket = io.connect('http://192.168.1.251:3000');
+        $("#typing").change(function(){
+            socket.emit('voice_text', { voice:$("#typing").val()});
+            $('#typing').val('');
+    });
+    </script>
+</body>
+</html>
